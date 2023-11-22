@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Allotrix 1.0</title>
+  <link href="styles.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+
+</head>
+
+<body>
+
+  <div id="base-container">
+    <div id="side-bar">
+
+      <div id = "logo">
+        <img id = "logoIMG" src="assets/logo2.png">
+      </div>
+
+      <div id="profile">
+        <img id="pfp" src="assets/default.jpeg">
+        <h3 id="org-name">Account Name</h3>
+        <a id = "edit">Edit Profile</a>
+        <a id = "profile-logout">Logout</a>
+      </div>
+          <div id="btn-options">
+            <button id="dashboard" class="sidebar-button" ><i class="fas fa-home" ></i> Dashboard</button>
+            <button id = "add-committees" class="sidebar-button"  ><i class="fa-solid fa-plus"></i> Committees</button>
+            <button id = "matrix" class="sidebar-button"  ><i class="fas fa-table"></i> Matrix</button>
+            <button id = "settings" class="sidebar-button"  ><i class="fas fa-cog"></i> Settings</button>
+
+          </div>
+    
+<!---->
+    </div>
+    <div id="container">
+        <header>
+          <h1 id="page-name">DashBoard</h1>
+            <div class="header-buttons">
+              <label class="toggle-container">
+                <span class="toggle-label">Automate Emails:</span>
+                <div style="position: relative;">
+                  <input type="checkbox" class="toggle-checkbox" id="emailToggle"> 
+                </div>
+              </label>
+              <div id = "subscription-status" class="subscription-status">Subscription: Inactive</div>
+              <button id = "set-up" class="header-button"><i class="fa-solid fa-cube"></i>SetUp</button>
+            <button id = "tutorial" class="header-button notifs"><i class="fas fa-question-circle" style="font-size: 1.2em;"></i></button>
+            </div>
+        </header>
+
+        <div id="working-container">
+
+
+        </div>
+    </div>
+  
+  </div>
+
+
+  <script src="renderer.js" type="module"></script>
+
+
+</body>
+
+</html>
