@@ -14,7 +14,7 @@ const { ipcRenderer } = require('electron');
 
 const tutorialBtn = document.getElementById("tutorial");
 tutorialBtn.addEventListener("click", async()=>{
-     open("https://youtu.be/6oC5OM1WNGA");
+     open("https://allotrix.com/");
 });
 
 const folderName = "Allotrix"

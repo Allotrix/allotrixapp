@@ -47,15 +47,15 @@
       "index.html",
       "env.json"
     ],
-    
-    "win": {
-      "target": "nsis",
-      "icon": "renderer/assets/a.ico"
-    },
     "mac": {
       "target": "dmg",
       "category": "allotrix.app.category",
-      "icon": "renderer/assets/a.icns"
+      "icon": "renderer/assets/a.icns",
+      "minimumSystemVersion": "10.11.0" 
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "renderer/assets/a.ico"
     },
     "linux": {
       "target": [

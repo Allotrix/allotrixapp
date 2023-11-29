@@ -1161,27 +1161,34 @@ async function test_subject() {
     const firstname = headerrow.findIndex((header) => header.toLowerCase() === 'first name');
     const lastname = headerrow.findIndex((header) => header.toLowerCase() === 'last name');
     const email = headerrow.findIndex((header) => header.toLowerCase() === 'email id');
-    const phone = headerrow.findIndex((header) => header.toLowerCase() === 'phone');
+    const phone = headerrow.findIndex((header) => header.toLowerCase() === 'phone number');
     const pref1 = headerrow.findIndex((header) => header.toLowerCase() === 'committee preference 1');
     const pref2 = headerrow.findIndex((header) => header.toLowerCase() === 'committee preference 2');
     const mun_exp = headerrow.findIndex((header) => header.toLowerCase() === 'previous mun experience count');
+
     const bd = headerrow.findIndex((header) => header.toLowerCase() === 'best delegate');
     const hc = headerrow.findIndex((header) => header.toLowerCase() === 'high commendation');
     const spec = headerrow.findIndex((header) => header.toLowerCase() === 'special mention');
 
-    const cont1 = headerrow.findIndex((header) => header.toLowerCase() === 'country preference 1');
-    const cont2 = headerrow.findIndex((header) => header.toLowerCase() === 'country preference 2');
-    const cont3 = headerrow.findIndex((header) => header.toLowerCase() === 'country preference 3');
+    const cont1 = headerrow.findIndex((header) => header.toLowerCase() === 'country preference 1 (committee 1)');
+    const cont2 = headerrow.findIndex((header) => header.toLowerCase() === 'country preference 2 (committee 1)');
+    const cont3 = headerrow.findIndex((header) => header.toLowerCase() === 'country preference 3 (committee 1)');
+
+    const cont11 = headerrow.findIndex((header) => header.toLowerCase() === 'country preference 1 (committee 2)');
+    const cont22 = headerrow.findIndex((header) => header.toLowerCase() === 'country preference 2 (committee 2)');
+    const cont33 = headerrow.findIndex((header) => header.toLowerCase() === 'country preference 3 (committee 2)');
+
 
     for(let i of data.slice(1)){
+
+
 
       let item = new Alotter()
       isExecuting = true;
 
       const MUN_EXP = parseInt(i[mun_exp])*1 + parseInt(i[bd])*4 + parseInt(i[hc])*3 +parseInt(i[spec])*2
-      console.log(MUN_EXP);
       
-      item.user_details = [[i[pref1],i[pref2],i[cont1],i[cont2],i[cont3]],MUN_EXP,i[firstname], i[lastname], i[email], i[phone]]
+      item.user_details = [[i[pref1],i[pref2],i[cont1],i[cont2],i[cont3],i[cont11],i[cont22],i[cont33]],MUN_EXP,i[firstname], i[lastname], i[email], i[phone]]
       await item.controller();
       consoleLog("Algorithm Working...");
 
@@ -1253,6 +1260,5 @@ export async function consoleLog(message, color = 'white') {
     console.log("console not found ");
   }
 }
-
 
 

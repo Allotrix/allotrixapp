@@ -658,6 +658,8 @@ export async function pasteResultToWaitlistSheet(result){
 
 export async function sendEmail(result) {
 
+  console.log("sending email: ", result);
+
   await checkSubscription();
   const jsonemailprefFilePath = path.join(targetFolderPath, 'email_pref.json');
   let existingJsonData = JSON.parse(fs.readFileSync(jsonemailprefFilePath, 'utf8'));
@@ -746,13 +748,14 @@ if (subscriptionPurchased === false && existingJsonData["automate_email"] == fal
     subject: 'Committee and country allotment | Allotrix testing <> Allotrix',
     html: UpdatedEmailBody,
   };
-  console.log("email:",result[2]);
+  console.log("email:",result[2]); 
 
   if (isValidEmail(result[2].trim()) == true  ) {
     console.log('Valid email address');
   } else {
     console.log('Invalid email address');
-    pastetoblacklist(result);
+    pastetoblacklist(result); //const combinedData = [firstName, lastName, email, phone, munExp, "None",  "None",  "None"];
+
     consoleLog('Invalid email address, allocation pasted to blacklist');
 
   }
@@ -805,6 +808,8 @@ if (subscriptionPurchased === false && existingJsonData["automate_email"] == fal
 
 
 export async function pastetoblacklist(result){
+
+  console.log(result)
   const auth = await getAuthClient3();
   const sheets = google.sheets({ version: 'v4', auth });
 

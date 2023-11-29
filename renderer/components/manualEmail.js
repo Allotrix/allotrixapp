@@ -2,6 +2,7 @@ import { workingContainer } from "./global.js";
 const path =  require("path")
 const fs =  require("fs");
 const { google } = require('googleapis');
+const { ipcRenderer } = require("electron");
 
 const nodemailer = require('nodemailer');
 
@@ -11,7 +12,7 @@ import { getAuth} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.
 import { getFirestore,  doc, getDoc} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
 
 import { getAuthClient1} from "./getAuthClient.js";
-import {getSheetData, showLoadingScreen, hideLoadingScreen} from "./index.js";
+import {getSheetData, showLoadingScreen, hideLoadingScreen, consoleLog} from "./index.js";
 import {  pastetoblacklist  } from "./index.js";
 
 
@@ -376,7 +377,9 @@ function createEmailTile(committeeName) {
         
             if (confirmed) {
                 const rows = tbody.querySelectorAll("tr");
-        
+
+                showLoadingScreen()
+                try{
                 for (const row of rows) {
                     const cells = row.querySelectorAll("td");
         
@@ -393,6 +396,12 @@ function createEmailTile(committeeName) {
                     // Add a class to dim the processed row
                     row.classList.add("processed-row");
                 }
+              }
+              finally{
+                hideLoadingScreen();
+                ipcRenderer.send("reload-window");
+
+              }
             }
         });
         
@@ -516,7 +525,7 @@ if (subscriptionPurchased === false){
     console.log('Valid email address');
   } else {
     console.log('Invalid email address');
-    pastetoblacklist([firstName, lastName, emailId, "", country, committee, pertinency]);
+    pastetoblacklist([firstName, lastName, emailId, "", "", country, committee, pertinency]);
     console.log('Invalid email address, allocation pasted to blacklist');
 
   }
@@ -528,8 +537,8 @@ if (subscriptionPurchased === false){
     if (error) {
          console.log("Something went wrong, email not sent.");
       console.error('Error: ' + error);
-      pastetoblacklist([firstName, lastName, emailId, "", country, committee, pertinency]);
-         console.log('Invalid email address, allocation pasted to blacklist');
+      pastetoblacklist([firstName, lastName, emailId, "-", "-", country, committee, pertinency]);
+      console.log('Invalid email address, allocation pasted to blacklist');
 
 
     } else {
